@@ -29,7 +29,7 @@ Clone this repository to your local machine using Git:
 ```bash
 git clone https://github.com/Dewninim/GPA-Calculator.git
 
-### 2. Install Dependencies
+__2. Install Dependencies__
 
 Navigate to the project directory:
 ```bash
