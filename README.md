@@ -11,7 +11,8 @@ A simple and user-friendly GPA Calculator app built with Flutter. This app allow
 
 ## Screenshots
 
-![GPA Calculator App Screenshot](assets/screenshots/gpa_calculator_app.png)
+![image](https://github.com/user-attachments/assets/4f21c40b-a5f5-4f69-bdd9-630c40dd33d2)
+
 
 ## Requirements
 
