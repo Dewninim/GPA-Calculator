@@ -40,29 +40,39 @@ class InputScreen extends StatefulWidget {
 class _InputScreenState extends State<InputScreen> {
   List<TextEditingController> _courseNames = List.generate(6, (index) => TextEditingController());
   List<TextEditingController> _credits = List.generate(6, (index) => TextEditingController());
-  List<TextEditingController> _grades = List.generate(6, (index) => TextEditingController());
+  List<String> _grades = List.generate(6, (index) => 'A');  // Default grade for all entries
   
+  List<String> gradeOptions = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'E'];
+
   void _addModule() {
     setState(() {
       _courseNames.add(TextEditingController());
       _credits.add(TextEditingController());
-      _grades.add(TextEditingController());
+      _grades.add('A');  // Default grade for new module
+    });
+  }
+
+  void _removeModule(int index) {
+    setState(() {
+      _courseNames.removeAt(index);
+      _credits.removeAt(index);
+      _grades.removeAt(index);
     });
   }
 
   double calculateGPA() {
     double totalPoints = 0;
     int totalCredits = 0;
-    
+
     Map<String, double> gradeToPoint = {
       'A+': 4.0, 'A': 4.0, 'A-': 3.7, 'B+': 3.3, 'B': 3.0, 'B-': 2.7,
       'C+': 2.3, 'C': 2.0, 'C-': 1.7, 'D+': 1.3, 'D': 1.0, 'E': 0.0
     };
 
     for (int i = 0; i < _courseNames.length; i++) {
-      if (_credits[i].text.isNotEmpty && _grades[i].text.isNotEmpty) {
+      if (_credits[i].text.isNotEmpty && _grades[i].isNotEmpty) {
         int credit = int.tryParse(_credits[i].text) ?? 0;
-        double gradePoint = gradeToPoint[_grades[i].text.toUpperCase()] ?? 0.0;
+        double gradePoint = gradeToPoint[_grades[i]] ?? 0.0;
         totalPoints += credit * gradePoint;
         totalCredits += credit;
       }
@@ -177,15 +187,26 @@ class _InputScreenState extends State<InputScreen> {
               style: TextStyle(color: Colors.black),
             )),
             SizedBox(width: 10),
-            Expanded(child: TextField(
-              controller: _grades[index], 
-              decoration: InputDecoration(
-                labelText: 'Grade', 
-                labelStyle: TextStyle(color: Colors.black),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+            Expanded(
+              child: DropdownButton<String>(
+                value: _grades[index],
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _grades[index] = newValue!;
+                  });
+                },
+                items: gradeOptions.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
               ),
-              style: TextStyle(color: Colors.black),
-            )),
+            ),
+            IconButton(
+              icon: Icon(Icons.delete, color: Colors.red),
+              onPressed: () => _removeModule(index),
+            ),
           ],
         ),
       ),
