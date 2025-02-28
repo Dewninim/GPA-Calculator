@@ -30,6 +30,7 @@ Clone this repository to your local machine using Git:
 git clone https://github.com/Dewninim/GPA-Calculator.git
 
 ### 2. Install Dependencies
+
 Navigate to the project directory:
 ```bash
 cd GPA-Calculator
