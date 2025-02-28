@@ -51,7 +51,7 @@ flutter build apk
 
 
 
-## **How to Use the App**
+## How to Use the App
 Enter Course Details: You can enter the name of the course, its credit value, and the grade you received.
 Add More Courses: You can add more courses by clicking the "Add More Modules" button.
 Calculate GPA: After entering all the required course details, press the "Calculate" button to compute your GPA.
