@@ -41,7 +41,7 @@ class _InputScreenState extends State<InputScreen> {
   List<TextEditingController> _courseNames = List.generate(6, (index) => TextEditingController());
   List<TextEditingController> _credits = List.generate(6, (index) => TextEditingController());
   List<String> _grades = List.generate(6, (index) => 'A');  // Default grade for all entries
-  
+ 
   List<String> gradeOptions = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'E'];
 
   void _addModule() {
@@ -93,7 +93,7 @@ class _InputScreenState extends State<InputScreen> {
             SizedBox(height: 10),
             ...List.generate(_courseNames.length, (index) => buildInputRow(index)),
             SizedBox(height: 20),
-            
+           
             // Row for parallel buttons
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -167,9 +167,9 @@ class _InputScreenState extends State<InputScreen> {
         child: Row(
           children: [
             Expanded(child: TextField(
-              controller: _courseNames[index], 
+              controller: _courseNames[index],
               decoration: InputDecoration(
-                labelText: 'Course Name', 
+                labelText: 'Course Name',
                 labelStyle: TextStyle(color: Colors.black),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
               ),
@@ -177,12 +177,12 @@ class _InputScreenState extends State<InputScreen> {
             )),
             SizedBox(width: 10),
             Expanded(child: TextField(
-              controller: _credits[index], 
+              controller: _credits[index],
               decoration: InputDecoration(
-                labelText: 'Credits', 
+                labelText: 'Credits',
                 labelStyle: TextStyle(color: Colors.black),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-              ), 
+              ),
               keyboardType: TextInputType.number,
               style: TextStyle(color: Colors.black),
             )),
